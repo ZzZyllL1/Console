@@ -1,0 +1,1510 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>STTech.CodePlus</name>
+    </assembly>
+    <members>
+        <member name="T:STTech.CodePlus.Algorithm.Clusters.BaseCluster`1">
+            <summary>
+            聚类器基类
+            </summary>
+            <typeparam name="TPoint"></typeparam>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.Clusters.BaseCluster`1.Cluster(`0[])">
+            <summary>
+            聚类
+            </summary>
+            <param name="points">参与聚类计算的点</param>
+            <returns>聚类后的分组结果</returns>
+        </member>
+        <member name="T:STTech.CodePlus.Algorithm.Clusters.ClusterResult`1">
+            <summary>
+            聚类结果
+            </summary>
+            <typeparam name="TPoint"></typeparam>
+        </member>
+        <member name="P:STTech.CodePlus.Algorithm.Clusters.ClusterResult`1.HasNoisyPoint">
+            <summary>
+            是否包含噪点
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Algorithm.Clusters.ClusterResult`1.NoisyPoints">
+            <summary>
+            噪点
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Algorithm.Clusters.ClusterResult`1.PointGroup">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Algorithm.Clusters.DBScanCluster">
+            <summary>
+            DBScan算法聚类器
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.Clusters.DBScanCluster.#ctor(System.Int32,System.Int32)">
+            <summary>
+            构造DBScan算法的聚类器
+            </summary>
+            <param name="minimumPoints">单个簇最小点数，即一个簇中至少要包含的点的数量</param>
+            <param name="epsilon">点之间的距离阈值，即两个点之间的距离小于等于eps时，它们被认为是相邻的</param>
+        </member>
+        <member name="P:STTech.CodePlus.Algorithm.Clusters.DBScanCluster.MinimumPoints">
+            <summary>
+            单个簇最小点数，即一个簇中至少要包含的点的数量。
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Algorithm.Clusters.DBScanCluster.Epsilon">
+            <summary>
+            点之间的距离阈值，即两个点之间的距离小于等于eps时，它们被认为是相邻的。
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.Clusters.DBScanCluster.Cluster(System.Drawing.Point[])">
+            <inheritdoc/>
+        </member>
+        <member name="T:STTech.CodePlus.Algorithm.Clusters.KMeansCluster">
+            <summary>
+            KMeans算法聚类器
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.Clusters.KMeansCluster.#ctor(System.Int32)">
+            <summary>
+            构造KMeans聚类器
+            </summary>
+            <param name="clusterCount">聚类的个数，即将数据集分成k个簇</param>
+        </member>
+        <member name="P:STTech.CodePlus.Algorithm.Clusters.KMeansCluster.ClusterCount">
+            <summary>
+            聚类的个数，即将数据集分成k个簇
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Algorithm.DBScan">
+            <summary>
+            DBSCAN聚类算法工具类
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.DBScan.Cluster(System.Drawing.Point[],System.Int32,System.Int32)">
+            <summary>
+            执行DBSCAN聚类
+            </summary>
+            <param name="points">点坐标集合</param>
+            <param name="minPts">单个簇最小点数</param>
+            <param name="eps">点之间的距离阈值</param>
+            <returns></returns>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.DBScan.ExpandCluster(System.Drawing.Point[],System.Int32[],System.Drawing.Point,System.Collections.Generic.List{System.Drawing.Point},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            扩大聚类
+            </summary>
+            <param name="points">点坐标集合</param>
+            <param name="labels">点所属聚类的Id</param>
+            <param name="p">当前点</param>
+            <param name="neighbors">相邻点集合</param>
+            <param name="clusterId">聚类Id</param>
+            <param name="eps">点之间的距离阈值</param>
+            <param name="minPts">单个簇最小点数</param>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.DBScan.GetNeighbors(System.Drawing.Point[],System.Drawing.Point,System.Int32)">
+            <summary>
+            根据距离阈值获取指定点周边临近点
+            </summary>
+            <param name="points"></param>
+            <param name="p"></param>
+            <param name="eps"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.DBScan.Distance(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            计算两点之间距离
+            </summary>
+            <param name="p"></param>
+            <param name="q"></param>
+            <returns></returns>
+        </member>
+        <member name="T:STTech.CodePlus.Algorithm.Dichotomy">
+            <summary>
+            二分法算法类
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.Dichotomy.BinarySearch``1(``0[],System.Func{``0,STTech.CodePlus.Algorithm.ComparisonResult},STTech.CodePlus.Algorithm.MatchStrategy)">
+            <summary>
+            二分法查找目标值在数组中的索引（值的比较由回调完成，不提供目标值）
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array">数据集合</param>
+            <param name="comparer">比较回调</param>
+            <param name="strategy">匹配策略，如果是完全匹配策略，则若没有相等的则返回-1，若策略是匹配不到时采用较小值，则返回最接近的前一个值，若策略是匹配不到时采用较大值，则返回最接近的后一个值</param>
+            <returns></returns>
+        </member>
+        <member name="T:STTech.CodePlus.Algorithm.KMeans">
+            <summary>
+            KMeans算法类
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.KMeans.Cluster(STTech.CodePlus.PointD[],System.Int32)">
+            <summary>
+            使用 KMeans 算法对 Point 数组进行聚类
+            </summary>
+            <param name="points">待聚类的 Point 数组</param>
+            <param name="k">聚类的个数</param>
+            <returns>聚类的结果</returns>
+        </member>
+        <member name="T:STTech.CodePlus.Algorithm.RegressionLine">
+            <summary>
+            回归线
+            线性回归方程（y = kx + b）
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Algorithm.RegressionLine.Slope">
+            <summary>
+            直线斜率<br/> 
+            斜率（Slope）表示直线在水平方向上的变化率。它是直线上任意两点之间的纵向差异与横向差异的比值。
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Algorithm.RegressionLine.Intercept">
+            <summary>
+            直线截距<br/> 
+            截距（Intercept）表示直线与纵坐标轴的交点位置。它是直线与纵坐标轴的交点的纵坐标值。
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.RegressionLine.#ctor(System.Drawing.PointF[])">
+            <summary>
+            通过一组二维坐标点构造回归线
+            </summary>
+            <param name="points">坐标点数组</param>
+            <exception cref="T:System.ArgumentException">当数据为空或数据点个数少于2个时抛出异常</exception>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.RegressionLine.CalcMeanAbsoluteError(System.Drawing.PointF[])">
+            <summary> 
+            计算平均绝对误差（Mean Absolute Error，MAE）<br/>
+            MAE是一组数据点在线上的离散程度的评估指标,它表示每个数据点的实际值与回归线预测值之间的差异的绝对值的平均值。
+            </summary> 
+            <param name="points">点集</param> 
+            <returns>MAE</returns>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.RegressionLine.CalcSumOfSquaredResiduals(System.Drawing.PointF[])">
+            <summary> 
+            计算给定点集到一条直线的残差平方和（SSR）<br/>
+            SSR是回归模型拟合程度的评估指标，它表示每个数据点的实际值与回归线预测值之间的差异的平方和。
+            </summary> 
+            <param name="points">点集</param> 
+            <returns>SSR</returns>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.RegressionLine.#ctor(System.Double,System.Double)">
+            <summary>
+            通过斜率和截距构造回归线
+            </summary>
+            <param name="slope"></param>
+            <param name="intercept"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.RegressionLine.GetY(System.Double)">
+            <summary>
+            根据 x 坐标计算对应的 y 坐标
+            </summary>
+            <param name="x">x 坐标</param>
+            <returns>y 坐标</returns>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.RegressionLine.GetX(System.Double)">
+            <summary>
+            根据 y 坐标计算对应的 x 坐标
+            </summary>
+            <param name="y">y 坐标</param>
+            <returns>x 坐标</returns>
+        </member>
+        <member name="M:STTech.CodePlus.Algorithm.RegressionLine.GetAngle">
+            <summary>
+            根据斜率计算角度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:STTech.CodePlus.ConvexHull">
+            <summary>
+            凸包算法类
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.ConvexHull.GetConvexHullByGraham(STTech.CodePlus.PointD[])">
+            <summary>
+            通过Graham算法获取围绕所有点的凸多边形的轮廓点<br/>
+            复杂度：O(nlogn)
+            </summary>
+            <param name="points">点数组</param>
+            <returns>轮廓点数组</returns>
+        </member>
+        <member name="M:STTech.CodePlus.ConvexHull.GetConvexHullByJarvis(STTech.CodePlus.PointD[])">
+            <summary>
+            通过Jarvis算法获取围绕所有点的凸多边形的轮廓点<br/>
+            Jarvis 算法的时间复杂度是 O(nh)，其中 n 是点集中点的个数，h 是凸包中点的个数。因为 Jarvis 算法的主要工作是扫描点集中的每个点，对于每个点，需要在点集中查找下一个点，因此时间复杂度为 O(n^2)。但是由于 Jarvis 算法的凸包点数通常比较少，所以 h远小于n，因此 Jarvis 算法的时间复杂度通常被认为是 O(n) 级别的。
+            需要注意的是，当点集中存在大量共线的点时，Jarvis 算法的时间复杂度可能会退化到 O(n^2) 级别，因为需要不断地扫描点集中的点来找到下一个点。此外，当点集中存在大量重复的点时，Jarvis 算法可能会陷入死循环，因此需要对点集进行去重操作。
+            </summary>
+            <param name="points">点数组</param>
+            <returns>轮廓点数组</returns>
+        </member>
+        <member name="M:STTech.CodePlus.ConvexHull.GetConvexHullByAndrews(STTech.CodePlus.PointD[])">
+            <summary>
+            获取围绕所有点的凸多边形的轮廓点<br/>
+            复杂度：O(n log n)
+            </summary>
+            <param name="points">点数组</param>
+            <returns>轮廓点数组</returns>
+        </member>
+        <member name="M:STTech.CodePlus.ConvexHull.Cross(STTech.CodePlus.PointD,STTech.CodePlus.PointD,STTech.CodePlus.PointD)">
+            <summary>
+            计算从 a 到 b 再到 c 的叉积
+            </summary>
+            <param name="a">点 a</param>
+            <param name="b">点 b</param>
+            <param name="c">点 c</param>
+            <returns>叉积值</returns>
+        </member>
+        <member name="T:STTech.CodePlus.Point`1">
+            <summary>
+            表示一个二维坐标点
+            </summary>
+            <typeparam name="T">坐标的数据类型</typeparam>
+        </member>
+        <member name="P:STTech.CodePlus.Point`1.X">
+            <summary>
+            X 坐标
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Point`1.Y">
+            <summary>
+            Y 坐标
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Point`1.#ctor(`0,`0)">
+            <summary>
+            初始化一个二维坐标点
+            </summary>
+            <param name="x">X 坐标</param>
+            <param name="y">Y 坐标</param>
+        </member>
+        <member name="P:STTech.CodePlus.Components.BaseMonitor`3.Source">
+            <summary>
+            数据源
+            </summary>
+        </member>
+        <member name="E:STTech.CodePlus.Components.BaseMonitor`3.ValueChanged">
+            <summary>
+            当任意值发生变更时
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BaseMonitor`3.CompareValuePickHandler(`1)">
+            <summary>
+            比较属性值选择器
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BaseMonitor`3.IndexConvertHandler(System.Int32)">
+            <summary>
+            数据序号转换过程
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BaseMonitor`3.IndexReductionHandler(`0)">
+            <summary>
+            数据序号还原过程
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BaseMonitor`3.GetValue(`0)">
+            <summary>
+            获取值
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BaseMonitor`3.Update(`1[])">
+            <summary>
+            更新数据源内的数据
+            </summary>
+            <param name="newData"></param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BaseMonitor`3.Notify">
+            <summary>
+            通知发生了变化
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BaseMonitor`3.Backup">
+            <summary>
+            备份
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BaseMonitor`3.Check">
+            <summary>
+            检查是否发生了变化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:STTech.CodePlus.Components.MemoryMonitor`3.BackupArray">
+            <summary>
+            备份数据
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.MemoryMonitor`3.Backup">
+            <inheritdoc/>
+        </member>
+        <member name="M:STTech.CodePlus.Components.MemoryMonitor`3.Check">
+            <inheritdoc/>
+        </member>
+        <member name="P:STTech.CodePlus.Components.ValueChangedEventArgs`2.Timestamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.ValueChangedEventArgs`2.Index">
+            <summary>
+            变更值的编号
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.ValueChangedEventArgs`2.OriginalValue">
+            <summary>
+            原值
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.ValueChangedEventArgs`2.NewValue">
+            <summary>
+            新值
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.ValuesMonitor`1.CompareValuePickHandler(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:STTech.CodePlus.Components.ValuesMonitor`1.IndexConvertHandler(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:STTech.CodePlus.Components.ValuesMonitor`1.IndexReductionHandler(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:STTech.CodePlus.Components.Comparator">
+            <summary>
+            比较器
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.Comparator.Compare``1(``0,``0)">
+            <summary>
+            比较大小
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:STTech.CodePlus.Components.Comparator.CompareResult`1">
+            <summary>
+            比较结果
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:STTech.CodePlus.Components.Comparator.CompareResult`1.Relation">
+            <summary>
+            两个值之间的关系
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.Comparator.CompareResult`1.GreatValue">
+            <summary>
+            较大值
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.Comparator.CompareResult`1.SmallValue">
+            <summary>
+            较小值
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Components.Comparator.CompareRelation">
+            <summary>
+            比较结果
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.Comparator.CompareRelation.Less">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.Comparator.CompareRelation.Equal">
+            <summary>
+            等于
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.Comparator.CompareRelation.More">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Components.ObjectPool`1">
+            <summary>
+            对象池
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:STTech.CodePlus.Components.ObjectPool`1.FreeCount">
+            <summary>
+            空闲对象总数
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.ObjectPool`1.MaxRetainCount">
+            <summary>
+            保留对象的最大个数
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.ObjectPool`1.constructObjectHandler">
+            <summary>
+            对象构造过程
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.ObjectPool`1.needToDispose">
+            <summary>
+            释放时是否销毁
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.ObjectPool`1.#ctor(System.Int32,System.Func{`0})">
+            <summary>
+            构造对象池
+            </summary>
+            <param name="maxRetainCount"></param>
+            <param name="constructObjectHandler"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.ObjectPool`1.ConstructObjectHandler">
+            <summary>
+            对象构造过程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STTech.CodePlus.Components.ObjectPool`1.Release(`0)">
+            <summary>
+            释放对象
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.ObjectPool`1.Get">
+            <summary>
+            获取对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BytesPool.Get">
+            <inheritdoc/>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BytesPool.Release(System.Byte[])">
+            <inheritdoc/>
+        </member>
+        <member name="T:STTech.CodePlus.Components.BytesBlock">
+            <summary>
+            字节块
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.BytesBlock.Pool">
+            <summary>
+            所属内存池
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.BytesBlock.Data">
+            <summary>
+            字节数组
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.BytesBlock.Stream">
+            <summary>
+            内存流
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.BytesBlock.IsDisposed">
+            <summary>
+            是否已释放
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.BytesBlock.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:STTech.CodePlus.Components.ITaskQueue`1">
+            <summary>
+            任务队列接口
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="M:STTech.CodePlus.Components.ITaskQueue`1.Join(`0)">
+            <summary>
+            将待处理数据存入任务队列
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:STTech.CodePlus.Components.TaskQueue`1">
+            <summary>
+            任务队列基类
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="P:STTech.CodePlus.Components.TaskQueue`1.ProcessHandler">
+            <summary>
+            处理过程
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.TaskQueue`1.IsDisposed">
+            <summary>
+            销毁状态
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.TaskQueue`1.#ctor(System.Action{`0})">
+            <summary>
+            构造队列任务
+            </summary>
+            <param name="processHandler"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.TaskQueue`1.Dispose">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.TaskQueue`1.JoinHandler(`0)">
+            <summary>
+            将待处理数据存入任务队列的具体实现
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.TaskQueue`1.Join(`0)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="data"></param>
+            <exception cref="T:System.ObjectDisposedException"></exception>
+        </member>
+        <member name="T:STTech.CodePlus.Components.LockedTaskQueue`1">
+            <summary>
+            阻塞式队列任务
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="F:STTech.CodePlus.Components.LockedTaskQueue`1.processLocker">
+            <summary>
+            处理过程锁
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.LockedTaskQueue`1.#ctor(System.Action{`0})">
+            <summary>
+            构造临时工式队列任务
+            </summary>
+            <param name="processHandler"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.LockedTaskQueue`1.JoinHandler(`0)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:STTech.CodePlus.Components.FloaterTaskQueue`1">
+            <summary>
+            临时工式队列任务
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="F:STTech.CodePlus.Components.FloaterTaskQueue`1.processLocker">
+            <summary>
+            处理过程锁
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.FloaterTaskQueue`1.queue">
+            <summary>
+            待处理数据队列
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.FloaterTaskQueue`1.isFree">
+            <summary>
+            空闲状态
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.FloaterTaskQueue`1.#ctor(System.Action{`0})">
+            <summary>
+            构造临时工式队列任务
+            </summary>
+            <param name="processHandler"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.FloaterTaskQueue`1.JoinHandler(`0)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.FloaterTaskQueue`1.FloaterWorkHandler">
+            <summary>
+            临时工任务
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.FloaterTaskQueue`1.Dispose">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1">
+            <summary>
+            长工式队列任务
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="F:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1.processLocker">
+            <summary>
+            处理过程锁
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1.floaterWorkLocker">
+            <summary>
+            线程任务锁
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1.queue">
+            <summary>
+            待处理数据队列
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1.isFree">
+            <summary>
+            空闲状态
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1.Timeout">
+            <summary>
+            线程空闲等待时长
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1.#ctor(System.Action{`0},System.Int32)">
+            <summary>
+            构造长工式队列任务
+            </summary>
+            <param name="processHandler"></param>
+            <param name="timeout">线程空闲等待时长</param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1.JoinHandler(`0)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1.LongTermWorkHandler">
+            <summary>
+            长工任务
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.LongTermWorkerTaskQueue`1.Dispose">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Components.SharedTaskQueue`1">
+            <summary>
+            共享式队列任务
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.SharedTaskQueue`1.#ctor(System.Action{`0})">
+            <summary>
+            构造共享式队列任务
+            </summary>
+            <param name="processHandler"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.SharedTaskQueue`1.Join(`0)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:STTech.CodePlus.Components.SharedTaskQueue">
+            <summary>
+            共享式队列任务基类
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.SharedTaskQueue.innerTaskQueue">
+            <summary>
+            全局的内部队列任务实体
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.SharedTaskQueue.#ctor(System.Action{System.Object})">
+            <summary>
+            构造共享式队列任务
+            </summary>
+            <param name="processHandler"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.SharedTaskQueue.SharedWorkHandler(System.Action)">
+            <summary>
+            共享
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.SharedTaskQueue.JoinHandler(System.Object)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:STTech.CodePlus.Components.UtopiaTaskQueue`1">
+            <summary>
+            乌托邦式队列任务
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="F:STTech.CodePlus.Components.UtopiaTaskQueue`1.processLocker">
+            <summary>
+            处理过程锁
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.UtopiaTaskQueue`1.queue">
+            <summary>
+            待处理数据队列
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Components.UtopiaTaskQueue`1.isFree">
+            <summary>
+            空闲状态
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.UtopiaTaskQueue`1.#ctor(System.Action{`0})">
+            <summary>
+            构造乌托邦式队列任务
+            </summary>
+            <param name="processHandler"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.UtopiaTaskQueue`1.JoinHandler(`0)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.UtopiaTaskQueue`1.Dispose">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Components.WaiterTaskQueue`1">
+            <summary>
+            服务员式队列任务
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="F:STTech.CodePlus.Components.WaiterTaskQueue`1.queue">
+            <summary>
+            待处理数据队列
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.WaiterTaskQueue`1.#ctor(System.Action{`0})">
+            <summary>
+            构造服务员式队列任务
+            </summary>
+            <param name="processHandler"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Components.WaiterTaskQueue`1.WaiterWorkHandler">
+            <summary>
+            服务员任务
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Components.WaiterTaskQueue`1.JoinHandler(`0)">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:STTech.CodePlus.Threading.BaseReusableThread">
+            <summary>
+            可复用线程基类
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Threading.BaseReusableThread.DefaultIdleTimeoutPeriod">
+            <summary>
+            默认的闲置超时时长
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Threading.BaseReusableThread.runningLocker">
+            <summary>
+            线程任务运行中的锁
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.BaseReusableThread.IdleTimeoutPeriod">
+            <summary>
+            闲置超时时长
+            </summary>
+        </member>
+        <member name="E:STTech.CodePlus.Threading.BaseReusableThread.IdleTimeout">
+            <summary>
+            限制超时
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.BaseReusableThread.State">
+            <summary>
+            当前状态 (空闲/忙碌)
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.BaseReusableThread.TaskDelegation">
+            <summary>
+            任务内容
+            当任务执行完成后可替换
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.BaseReusableThread.IsDisposed">
+            <summary>
+            是否已销毁
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.BaseReusableThread.IsBusy">
+            <summary>
+            是否是忙碌状态
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.BaseReusableThread.IsFree">
+            <summary>
+            是否是空闲状态
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.BaseReusableThread.Start">
+            <summary>
+            开始执行任务
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.BaseReusableThread.InnerLifecycleHandler">
+            <summary>
+            内部线程(可复用任务)的生命周期
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.BaseReusableThread.RaiseIdleTimeout(System.Object,System.EventArgs)">
+            <summary>
+            触发闲置超时事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.BaseReusableThread.Dispose">
+            <summary>
+            销毁
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Threading.CompletionStatus">
+            <summary>
+            任务完成状态
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Threading.CompletionStatus.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Threading.CompletionStatus.Error">
+            <summary>
+            错误
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Threading.ReusableState">
+            <summary>
+            可复用Task当前的状态
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Threading.ReusableState.Free">
+            <summary>
+            空闲
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Threading.ReusableState.Busy">
+            <summary>
+            忙碌
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Threading.ReusableState.Disposed">
+            <summary>
+            已销毁
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Threading.CompletedEventArgs">
+            <summary>
+            任务完成事件参数
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.CompletedEventArgs.Status">
+            <summary>
+            完成状态
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.CompletedEventArgs.Exception">
+            <summary>
+            异常信息
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Threading.ReusableTask">
+            <summary>
+            可复用任务
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ReusableTask.#ctor">
+            <summary>
+            构造可复用任务
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ReusableTask.Start">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ReusableTask.Dispose">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ReusableTask.InnerLifecycleHandler">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Threading.ReusableThread">
+            <summary>
+            可复用线程
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ReusableThread.#ctor">
+            <summary>
+            构造可复用线程
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ReusableThread.Start">
+            <summary>
+            开始执行任务
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ReusableThread.Dispose">
+            <summary>
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ReusableThread.InnerLifecycleHandler">
+            <summary>
+            可复用任务的生命周期
+            </summary>
+        </member>
+        <member name="T:STTech.CodePlus.Threading.TaskDelegation">
+            <summary>
+            任务内容
+            </summary>
+        </member>
+        <member name="E:STTech.CodePlus.Threading.TaskDelegation.Completed">
+            <summary>
+            任务完成事件
+            </summary>
+        </member>
+        <member name="E:STTech.CodePlus.Threading.TaskDelegation.Started">
+            <summary>
+            任务开始事件
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.TaskDelegation.TaskAction">
+            <summary>
+            临时任务动作
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.TaskDelegation.RaiseTaskCompleted(System.Object,STTech.CodePlus.Threading.CompletedEventArgs)">
+            <summary>
+            触发任务完成事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.TaskDelegation.RaiseTaskStarted(System.Object,System.EventArgs)">
+            <summary>
+            触发任务开始事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:STTech.CodePlus.Threading.TaskExtension">
+            <summary>
+            Task功能扩展
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.TaskExtension.Run``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Action{``0})">
+            <summary>
+            开启多个线程处理一组数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="objects">待处理数据</param>
+            <param name="threadCount">线程数</param>
+            <param name="handler">单个数据对象的处理过程</param>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.TaskExtension.Run(System.Action,System.Int32)">
+            <summary>
+            将指定的任务依序在线程池上运行，并返回表示该工作的Task对象。
+            超时时间达到后将取消任务。
+            </summary>
+            <param name="action">异步执行的工作</param>
+            <param name="timeout">超时时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.TaskExtension.Run``1(System.Func{``0},System.Int32)">
+            <summary>
+            将指定的任务依序在线程池上运行，并返回表示该工作的Task(TResult)对象。
+            超时时间达到后将取消任务。
+            </summary>
+            <typeparam name="T">任务返回值类型</typeparam>
+            <param name="action">异步执行的工作</param>
+            <param name="timeout">超时时间</param>
+            <returns></returns>
+        </member>
+        <member name="T:STTech.CodePlus.Threading.ThreadPool">
+            <summary>
+            线程池
+            </summary>
+        </member>
+        <member name="P:STTech.CodePlus.Threading.ThreadPool.IdleTimeoutPeriod">
+            <summary>
+            闲置超时时长
+            </summary>
+        </member>
+        <member name="F:STTech.CodePlus.Threading.ThreadPool.pool">
+            <summary>
+            复用线程对象池
+            </summary>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ThreadPool.#ctor(System.Int32,System.UInt32)">
+            <summary>
+            构造可复用线程池
+            </summary>
+            <param name="retainedThreadCount">驻留线程数量</param>
+            <param name="idleTimeoutPeriod">单个线程闲置超时时长（闲置超时的线程会被释放）</param>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ThreadPool.Run(STTech.CodePlus.Threading.TaskDelegation)">
+            <summary>
+            执行任务
+            </summary>
+            <param name="taskDelegation"></param>
+        </member>
+        <member name="M:STTech.CodePlus.Threading.ThreadPool.Release(STTech.CodePlus.Threading.ReusableThread)">
+            <summary>
+            释放复用线程
+            </summary>
+            <param name="thread"></param>
+        </member>
+        <member name="M:System.ArrayExtensions.ToList``1(System.Array)">
+            <summary>
+            转为指明类型的列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.ToHexCodeString(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            转换为16进制代码格式的字符串
+            例如：0xFF,0xA1,0xA2,0xB1,0xB2
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.ToHexString(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            转换为16进制的字符串
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.ToHexString(System.Collections.Generic.IEnumerable{System.Byte},System.String)">
+            <summary>
+            转换为16进制的字符串
+            </summary>
+            <param name="data"></param>
+            <param name="format">转换格式；若字母转为大写则为"{0:X2}"，小写为"{0:x2}"</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.ToBase64String(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            转Base64字符串
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.EncodeToString(System.Collections.Generic.IEnumerable{System.Byte},System.String)">
+            <summary>
+            转为指定编码(默认UTF-8)的字符串
+            </summary>
+            <param name="data"></param>
+            <param name="encode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.GetMD5(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            计算字节数组的MD5值
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.GetMD5String(System.Collections.Generic.IEnumerable{System.Byte},System.Boolean)">
+            <summary>
+            计算字节数组的MD5值
+            </summary>
+            <param name="data"></param>
+            <param name="capital">是否转换为大写字母，true为大写，false为小写</param>
+            <returns>MD5字符串</returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.CheckSum(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            和校验
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.PadRight(System.Collections.Generic.IEnumerable{System.Byte},System.Int32,System.Byte)">
+            <summary>
+            从右填充
+            </summary>
+            <param name="data"></param>
+            <param name="len">填充后总长度</param>
+            <param name="placeholder">占位符</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.BytesExtensions.PadLeft(System.Collections.Generic.IEnumerable{System.Byte},System.Int32,System.Byte)">
+            <summary>
+            从左填充
+            </summary>
+            <param name="data"></param>
+            <param name="len">填充后总长度</param>
+            <param name="placeholder">占位符</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.ContainsKeyAndValueNotNull``2(System.Collections.Generic.Dictionary{``0,``1},``0)">
+            <summary>
+            字典中包含键值且值不为空
+            </summary>
+            <param name="dict">字典</param>
+            <param name="key">键名</param>
+            <returns>是否包含键名且值不为空</returns>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.GetValue``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)">
+            <summary>
+            从字典中获取值
+            如果指定的键值不存在或值为空则先赋指定的值
+            </summary>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.RemoveFromKeys(System.Collections.IDictionary,System.Collections.IEnumerable)">
+            <summary>
+            从字典中移除键名集合中存在的项
+            </summary>
+            <param name="dict"></param>
+            <param name="keys">要移除的键名集合</param>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.RemoveOutsideKeys(System.Collections.IDictionary,System.Collections.IEnumerable)">
+            <summary>
+            从字典中移除键名集合中不存在的项
+            </summary>
+            <param name="dict"></param>
+            <param name="keys">要保留的键名集合</param>
+        </member>
+        <member name="M:System.Collections.Generic.IEnumerableExtensions.Slice``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            等尺寸分片
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <param name="blockSize">每部分的最大长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.IEnumerableExtensions.Balance``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            平均分成多组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <param name="blockCount">分组数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.IEnumerableExtensions.Merge``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0}[])">
+            <summary>
+            合并字节数组
+            </summary>
+            <param name="data">原数据(允许为空)</param>
+            <param name="append">追加数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.IEnumerableExtensions.StartWith``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            判断起始部分是否一致
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:System.Collections.Generic.IEnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})" -->
+        <!-- Badly formed XML comment ignored for member "M:System.Collections.Generic.IEnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})" -->
+        <member name="T:System.Collections.Generic.IEnumerableKmpExtensions">
+            <summary>
+            KMP算法模式匹配
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.IEnumerableKmpExtensions.IndexOf``1(``0[],``0[])">
+            <summary>
+            模式匹配（KMP）
+            查找子串在主串中的起始索引位置
+            </summary>
+            <typeparam name="T">元素类型</typeparam>
+            <param name="source">主串</param>
+            <param name="target">子串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.IEnumerableKmpExtensions.IndexOf``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            模式匹配（KMP）
+            查找子串在主串中的起始索引位置
+            </summary>
+            <typeparam name="T">元素类型</typeparam>
+            <param name="source">主串</param>
+            <param name="target">子串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.IEnumerableKmpExtensions.MatchByPrefixAndSuffix``1(``0[],``0[],``0[])">
+            <summary>
+            通过前缀和后缀匹配内容
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="source">原始数据</param>
+            <param name="prefix">前缀数据</param>
+            <param name="suffix">后缀数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Generic.QueueExtensions.Discard``1(System.Collections.Generic.Queue{``0},System.Int32)">
+            <summary>
+            抛弃超出指定长度的数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queue"></param>
+            <param name="len"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IO.FileInfoExtensions.GetMD5ForLargeFile(System.IO.FileInfo)">
+            <summary>
+            获取大文件的MD5值
+            通过文件流的方式读取，可支持大文件
+            </summary>
+            <param name="fi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IO.FileInfoExtensions.GetMD5ForSmallFile(System.IO.FileInfo)">
+            <summary>
+            获取文件的MD5值
+            一次读入内存，建议小文件使用
+            </summary>
+            <param name="fi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IO.FileInfoExtensions.GetMD5(System.IO.FileInfo)">
+            <summary>
+            获取文件的MD5值
+            </summary>
+            <param name="fi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.ObjectExtensions.With``1(``0,System.Action{``0})">
+            <summary>
+            提供访问（操作）对象成员的回调，并返回当前对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Drawing.PointExtensions.Distance(STTech.CodePlus.PointD,STTech.CodePlus.PointD)">
+            <summary>
+            计算两点之间的距离
+            </summary>
+            <param name="p"></param>
+            <param name="q"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Drawing.PointExtensions.Distance(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            计算两点之间的距离
+            </summary>
+            <param name="p"></param>
+            <param name="q"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Drawing.PointExtensions.Distance(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            计算两点之间的距离
+            </summary>
+            <param name="p"></param>
+            <param name="q"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Drawing.PointExtensions.IsNeighborPoint(System.Drawing.Point,System.Drawing.Point,System.Int32)">
+            <summary>
+            判断两点是否是相邻点（通过距离阈值）
+            </summary>
+            <param name="p"></param>
+            <param name="q"></param>
+            <param name="eps"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Drawing.PointExtensions.IsNeighborPoint(System.Drawing.PointF,System.Drawing.PointF,System.Int32)">
+            <summary>
+            判断两点是否是相邻点（通过距离阈值）
+            </summary>
+            <param name="p"></param>
+            <param name="q"></param>
+            <param name="eps"></param>
+            <returns></returns>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            字符串类型的扩展
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.GetMD5String(System.String,System.String)">
+            <summary>
+            获取字符串的MD5值
+            </summary>
+            <param name="input">源字符串</param>
+            <param name="encodeName">字符编码的名称</param>
+            <returns>MD5字符串</returns>
+        </member>
+        <member name="M:System.StringExtensions.GetMD5(System.String,System.String)">
+            <summary>
+            计算字符串的MD5
+            </summary>
+            <param name="input"></param>
+            <param name="encodeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.GetBytes(System.String,System.String)">
+            <summary>
+            获取字符串的字节数组(默认UTF-8)
+            </summary>
+            <param name="str"></param>
+            <param name="encodeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.HexStringToBytes(System.String)">
+            <summary>
+            16进制字符串转byte数组
+            </summary>
+            <param name="hexString">16进制字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.MiddleExtract(System.String,System.String,System.String)">
+            <summary>
+            截取字符串中间段
+            </summary>
+            <param name="sourse"></param>
+            <param name="startTag">起始标记</param>
+            <param name="endTag">结束标记</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.IsometricInsert(System.String,System.Int32,System.String)">
+            <summary>
+            等距插入
+            </summary>
+            <param name="source"></param>
+            <param name="size">间隔长度</param>
+            <param name="value">插入字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.Slice(System.String,System.Int32)">
+            <summary>
+            等尺寸分片<br/>
+            将字符串按指定大小分割成多个子串 
+            </summary>
+            <param name="source">源字符串</param>
+            <param name="size">分割尺寸</param>
+            <returns>子串列表</returns>
+        </member>
+        <member name="M:System.StringExtensions.Times(System.String,System.Int32)">
+            <summary>
+            将字符串重复指定次数
+            </summary>
+            <param name="source">源字符串</param>
+            <param name="times">重复次数</param>
+            <returns>重复后的字符串</returns>
+        </member>
+        <member name="M:System.StringExtensions.Times(System.Char,System.Int32)">
+            <summary>
+            将字符重复指定次数
+            </summary>
+            <param name="source">源字符</param>
+            <param name="times">重复次数</param>
+            <returns>重复后的字符串</returns>
+        </member>
+        <member name="M:System.StringExtensions.CutString(System.String,System.String,System.String)">
+            <summary>
+            通过指定的起始标记和结束标记截取字符串
+            </summary>
+            <param name="source">原始字符串</param>
+            <param name="startMark">起始标记</param>
+            <param name="endMark">结束标记</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.Replace(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            根据字典替换字符串
+            </summary>
+            <param name="source">原始字符串</param>
+            <param name="dictionary">关键字替换词典</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.MatchByWildcard(System.String,System.String)">
+            <summary>
+            与含通配符的字符串进行比对，判断是否一致
+            </summary>
+            <param name="source">原始字符串</param>
+            <param name="wildcard">含通配符的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.Join(System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            插入分隔符合并成新字符串
+            </summary>
+            <param name="source">原始字符串集合</param>
+            <param name="separator">分隔符</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.MatchByPrefixAndSuffix(System.String,System.String,System.String)">
+            <summary>
+            通过前缀和后缀匹配内容
+            </summary>
+            <param name="source">原始文本</param>
+            <param name="prefix">前缀字符串</param>
+            <param name="suffix">后缀字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.TaskExtensions">
+            <summary>
+            Task扩展
+            </summary>
+        </member>
+        <member name="M:System.TaskExtensions.WaitResult``1(System.Threading.Tasks.Task{``0},System.Action{System.Threading.Tasks.TaskStatus,``0})">
+            <summary>
+            等待任务结束，在回调中处理结果
+            </summary>
+            <typeparam name="T">Task返回值类型</typeparam>
+            <param name="task">任务对象</param>
+            <param name="callback">处理结果的回调</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.TypeExtensions.ToEnum``1(System.String,``0)">
+            <summary>
+            转枚举类型
+            </summary>
+            <typeparam name="T">指定枚举类型</typeparam>
+            <param name="enumName">枚举名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Xml.Linq.XmlExtension.Tracing(System.Xml.Linq.XObject)">
+            <summary>
+            节点溯源
+            </summary>
+            <param name="xobj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Xml.Linq.XmlExtension.GetPath(System.Xml.Linq.XObject,System.String)">
+            <summary>
+            获取XML节点的路径
+            </summary>
+            <param name="xobj"></param>
+            <param name="separator"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
